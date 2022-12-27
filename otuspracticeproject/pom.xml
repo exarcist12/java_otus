@@ -74,6 +74,7 @@
                         <phase>compile</phase>
                         <goals>
                             <goal>check</goal>
+
                         </goals>
                     </execution>
                 </executions>
