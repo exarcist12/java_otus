@@ -7,7 +7,7 @@ public abstract class AbsBaseComponent<T> {
 
     protected WebDriver driver;
 
-    AbsBaseComponent(WebDriver driver){
+    AbsBaseComponent(WebDriver driver) {
         this.driver = driver;
 
         PageFactory.initElements(driver, this);

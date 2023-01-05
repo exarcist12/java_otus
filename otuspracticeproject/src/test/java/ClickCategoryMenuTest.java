@@ -17,7 +17,7 @@ public class ClickCategoryMenuTest {
     public void clickCategoryMenuItem() throws PathEmptyException, InterruptedException {
 
         new MainPage(driver).open();
-//        driver.manage().window().fullscreen();
+        driver.manage().window().fullscreen();
         MenuComponent menuComponent = new MenuComponent(driver);
         menuComponent.clickCategory(CategoryData.PROGRAMMER);
         Thread.sleep(5000);

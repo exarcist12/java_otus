@@ -10,7 +10,7 @@ import pages.CategoryPage;
 import waiters.StandartWaiter;
 
 
-public class MenuComponent extends AbsBaseComponent<MenuComponent>{
+public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
     public MenuComponent(WebDriver driver) {
         super(driver);
@@ -18,10 +18,10 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent>{
 
     private final String menuItemByTitleSelectorTemplate = "#categories_id a[title=\"%s\"]";
 
-    public CategoryPage clickCategory(CategoryData categoryData){
+    public CategoryPage clickCategory(CategoryData categoryData) {
         String selector = String.format(menuItemByTitleSelectorTemplate, categoryData.getName());
 
-        WebElement element = driver.findElement(By.cssSelector(selector));
+        driver.findElement(By.cssSelector(selector)).click();
 
         return new CategoryPage(driver);
     }
