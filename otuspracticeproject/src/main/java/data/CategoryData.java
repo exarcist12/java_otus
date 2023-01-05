@@ -2,7 +2,8 @@ package data;
 
 public enum CategoryData {
 
-    PROGRAMMER("Программирование");
+    PROGRAMMER("Программирование"),
+    INFRA("Инфраструктура");
 
     private String name;
     CategoryData(String name){

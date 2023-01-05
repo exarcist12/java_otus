@@ -27,7 +27,8 @@ public abstract class AbsBasePage<T> {
     }
 
     public T open() throws PathEmptyException {
-        driver.get(baseUrl + getPath());
+        String url = baseUrl + getPath();
+        driver.get(url);
 
         return (T)this;
     }
