@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import pages.CategoryPage;
 import waiters.StandartWaiter;
 
+import java.util.List;
+
 
 public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
@@ -29,12 +31,9 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     public MenuComponent menuItemActive(CategoryData categoryData) {
         String selector = String.format(catalogCategoriesCheckboxesSelectorTemplate, categoryData.getName());
         WebElement element = driver.findElement(By.xpath(selector));
-
+        List<WebElement> elements = driver.findElements(By.xpath(selector));
+        element.click();
         assert standartWaiter.waitForElementVisible(element): "Error";
-
-
-
-
         return this;
     }
 
