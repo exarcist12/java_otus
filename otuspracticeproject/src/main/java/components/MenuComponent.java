@@ -37,7 +37,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
         WebElement element = driver.findElement(By.xpath(selector));
         List<WebElement> elements = driver.findElements(By.xpath(selector));
 //        element.click();
-        WebDriverWait webDriverWait = new WebDriverWait(driver, IMPLICITLY_WAIT_SECOND);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         boolean condPerf;
         try {
             webDriverWait.until(ExpectedConditions.visibilityOf(element));
