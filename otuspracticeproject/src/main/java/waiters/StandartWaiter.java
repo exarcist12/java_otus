@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class StandartWaiter implements WaiterInt {
 
-    private WebDriver driver = null;
+    private WebDriver driver;
 
     public StandartWaiter(WebDriver driver) {
         this.driver = driver;

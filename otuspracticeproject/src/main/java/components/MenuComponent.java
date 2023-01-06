@@ -1,11 +1,9 @@
 package components;
 
-import annotations.Path;
 import data.CategoryData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.CategoryPage;
 import waiters.StandartWaiter;
 
@@ -16,7 +14,9 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
         super(driver);
     }
 
+    StandartWaiter standartWaiter = new StandartWaiter(driver);
     private final String menuItemByTitleSelectorTemplate = "#categories_id a[title=\"%s\"]";
+    private final String catalogCategoriesCheckboxesSelectorTemplate = "//label[text()=\"%s\"]/..//div/input[@checked]";
 
     public CategoryPage clickCategory(CategoryData categoryData) {
         String selector = String.format(menuItemByTitleSelectorTemplate, categoryData.getName());
@@ -27,8 +27,13 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     }
 
     public MenuComponent menuItemActive(CategoryData categoryData) {
-        String selector = String.format(menuItemByTitleSelectorTemplate, categoryData.getName());
-        StandartWaiter standartWaiter = new StandartWaiter(driver);
+        String selector = String.format(catalogCategoriesCheckboxesSelectorTemplate, categoryData.getName());
+        WebElement element = driver.findElement(By.xpath(selector));
+
+        assert standartWaiter.waitForElementVisible(element): "Error";
+
+
+
 
         return this;
     }
