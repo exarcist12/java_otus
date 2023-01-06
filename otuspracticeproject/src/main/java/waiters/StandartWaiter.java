@@ -5,11 +5,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Набор стандартных ожиданий
- * @author Pavel Balahonov <p.balahonov@corp.mail.ru>
- */
-public class StandartWaiter implements WaiterInt {
+
+public class StandartWaiter{
 
     private WebDriver driver;
 
@@ -17,9 +14,9 @@ public class StandartWaiter implements WaiterInt {
         this.driver = driver;
     }
 
-    @Override
+
     public boolean waitForCondition(ExpectedCondition condition) {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, IMPLICITLY_WAIT_SECOND);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         try {
             webDriverWait.until(condition);
             return true;
