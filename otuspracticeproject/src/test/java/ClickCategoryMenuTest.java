@@ -18,7 +18,6 @@ public class ClickCategoryMenuTest {
 
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
-//        driver.manage().window().fullscreen();
         MenuComponent menuComponent = new MenuComponent(driver);
         menuComponent.clickCategory(CategoryData.PROGRAMMER);
         menuComponent.menuItemActive(CategoryData.PROGRAMMER);
