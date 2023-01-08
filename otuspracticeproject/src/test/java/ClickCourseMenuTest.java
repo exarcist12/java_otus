@@ -16,22 +16,11 @@ public class ClickCourseMenuTest {
 
     @Driver
     private WebDriver driver;
-//    @Test
-//    public void clickCourseMenuTest() throws PathEmptyException {
-//
-//        MainPage mainPage = new MainPage(driver);
-//        mainPage.open();
-//        driver.manage().window().fullscreen();
-//        MenuComponent menuComponent = new MenuComponent(driver);
-//        CoursePage coursePage = menuComponent.clickCourse(CoursesData.JAVASPECIALIZATION);
-//        menuComponent.checkTitlePage(coursePage, CoursesData.JAVASPECIALIZATION);
-//
-//    }
 
     @Test
-    public void clickCourseMenuTest2() throws PathEmptyException {
+    public void clickCourseMenuTest() throws PathEmptyException {
 
-        String courseName = "Специализация QA Automation Engineer";
+        String courseName = "Специализация сетевой инженер";
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
         driver.manage().window().fullscreen();

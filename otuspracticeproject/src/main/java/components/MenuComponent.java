@@ -36,17 +36,18 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     public CategoryPage clickCategory(CategoryData categoryData) {
 
         String selector = String.format(menuItemByTitleSelectorTemplate, categoryData.getName());
-
         driver.findElement(By.cssSelector(selector)).click();
 
         return new CategoryPage(driver);
     }
 
     public MenuComponent menuItemActive(CategoryData categoryData) {
+
         String selector = String.format(catalogCategoriesCheckboxesSelectorTemplate, categoryData.getName());
         WebElement element = driver.findElement(By.xpath(selector));
         List<WebElement> elements = driver.findElements(By.xpath(selector));
         assertThat("error", standartWaiter.waitForElementVisible(element), equalTo(true));
+
         return this;
     }
 
@@ -59,12 +60,13 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
             title = element.getText();
             titleCourses.add(title);
         }
+
         return titleCourses;
     }
 
     public List<CoursesData> getCoursesDataFromMainPage(List<String> list) {
 
-            List<CoursesData>  listEnums = Arrays.asList(CoursesData.values());
+        List<CoursesData>  listEnums = Arrays.asList(CoursesData.values());
 
         List<CoursesData> newList = listEnums.stream().filter(s ->
                 list.contains(s.getName())
@@ -74,6 +76,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     }
 
     public CoursesData filterCourseName(String name) {
+
         List<String> courseString =  getCoursesStringFromMainPage();
         List<CoursesData> coursesData = getCoursesDataFromMainPage(courseString);
         List<CoursesData> coursesData2 = coursesData.stream().filter(s -> s.getName() == name).collect(Collectors.toList());
@@ -83,6 +86,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
 
     public CoursePage clickCourse(CoursesData coursesData) {
+
         String selector = String.format(menuCourseSelectorTemplate, coursesData.getName());
         WebElement element = driver.findElement(By.xpath(selector));
         List<WebElement> buttonCoockies = driver.findElements(By.cssSelector(buttonCoockiesTemplate));
@@ -90,17 +94,21 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
             buttonCoockies.get(0).click();
         }
         new Actions(driver).moveToElement(element).click().perform();
+
         return new CoursePage(driver);
     }
 
     public CoursesComponent checkTitlePage(CoursePage coursePage, CoursesData coursesData) {
+
         String title = coursePage.getPageTitle();
         assertThat("Тайтл не совпал", title, equalTo(coursesData.getNameOnPage()));
+
         return new CoursesComponent(driver);
     }
 
 
     public MainPage clickMainPage() {
+
         String selector = String.format(logo);
         driver.findElement(By.cssSelector(selector)).click();
 

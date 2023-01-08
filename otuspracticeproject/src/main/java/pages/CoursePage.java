@@ -11,6 +11,6 @@ public class CoursePage extends AbsBasePage<CoursePage> {
     }
 
     public String getPageTitle() {
-        return driver.findElement(By.cssSelector(titleTemplate)).getText();
+        return driver.findElement(By.cssSelector(titleTemplate)).getAttribute("textContent");
     }
 }
