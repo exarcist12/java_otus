@@ -5,11 +5,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class AbsBaseComponent<T> {
 
-    protected WebDriver driver;
+  protected WebDriver driver;
 
-    AbsBaseComponent(WebDriver driver) {
-        this.driver = driver;
+  AbsBaseComponent(WebDriver driver) {
+    this.driver = driver;
 
-        PageFactory.initElements(driver, this);
-    }
+    PageFactory.initElements(driver, this);
+  }
 }

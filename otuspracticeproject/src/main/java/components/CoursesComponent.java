@@ -58,9 +58,16 @@ public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
     }
 
     public Date getDate(String dateString) throws ParseException {
+        Date date;
+        try {
+            DateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("ru"));
+            date = format.parse(dateString);
+        }
+        catch(ParseException e) {
+            DateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("en"));
+            date = format.parse(dateString);
+        }
 
-        DateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("ru"));
-        Date date = format.parse(dateString);
         return date;
     }
  }

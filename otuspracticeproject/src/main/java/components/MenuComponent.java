@@ -14,7 +14,6 @@ import waiters.StandartWaiter;
 
 import java.text.ParseException;
 import java.util.*;
-import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -105,7 +104,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     public CoursesComponent checkTitlePage(CoursePage coursePage, CoursesData coursesData) {
 
         String title = coursePage.getPageTitle();
-        assertThat("Тайтл не совпал", title, equalTo(coursesData.getNameOnPage()));
+        assertThat("Тайтл не совпал", title, equalTo(coursesData.getPageTitle()));
 
         return new CoursesComponent(driver);
     }
@@ -162,33 +161,12 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     }
 
     public Course maxCourse(List<Course> courses){
-        Course courseNow = new Course();
-        List<Integer> times = new ArrayList<>();
-        for (Course course : courses){
-            times.add( (int) course.getDate().getTime());
-        }
-
-        Integer time = times.stream().sorted((p1, p2)-> (p2 - p1)).findFirst().get();
-        for (Course course : courses){
-            if (time.equals(course.getDate().getTime())){
-                courseNow = course;
-            }
-        }
-        return courseNow;
-    }
-
-    public Course minCourse(List<Course> courses){
-        Course course = courses.stream().sorted((p1, p2)-> ((int)(p1.getDate().getTime()) - (int)(p2.getDate().getTime()))).findFirst().get();
+        Course course = courses.stream().reduce((p1, p2) -> (p2.getDate().getTime() > p1.getDate().getTime() ? p2 : p1)).get();
         return course;
     }
 
-    public List<Date> times(List<Course> courses) {
-        Course courseNow = new Course();
-        List<Date> times = new ArrayList<>();
-        for (Course course : courses) {
-            times.add(course.getDate());
-        }
-        return times;
+    public Course minCourse(List<Course> courses){
+        Course course = courses.stream().reduce((p1, p2) -> (p1.getDate().getTime() > p2.getDate().getTime() ? p2 : p1)).get();
+        return course;
     }
-
 }

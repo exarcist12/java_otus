@@ -25,12 +25,12 @@ public enum CoursesData {
     PHPDEVELOPER7("Специализация PHP Developer7", "Специализация PHP Developer7", CategoryData.PROGRAMMER);
 
     private String name;
-    private String nameOnPage;
+    private String pageTitle;
     private CategoryData categoryData;
 
-    CoursesData (String name, String nameOnPage, CategoryData categoryData){
+    CoursesData (String name, String pageTitle, CategoryData categoryData) {
         this.name = name;
-        this.nameOnPage = nameOnPage;
+        this.pageTitle = pageTitle;
         this.categoryData = categoryData;
     }
 
@@ -38,8 +38,8 @@ public enum CoursesData {
         return name;
     }
 
-    public String getNameOnPage() {
-        return nameOnPage;
+    public String getPageTitle() {
+        return pageTitle;
     }
     public void setName(String name) {
         this.name = name;
