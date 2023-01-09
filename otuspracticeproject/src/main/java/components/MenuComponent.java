@@ -1,6 +1,7 @@
 package components;
 
 import data.CategoryData;
+import data.Course;
 import data.CoursesData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +12,9 @@ import pages.CoursePage;
 import pages.MainPage;
 import waiters.StandartWaiter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,14 +25,17 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     public MenuComponent(WebDriver driver) {
         super(driver);
     }
-
+    CoursesComponent coursesComponent = new CoursesComponent(driver);
     StandartWaiter standartWaiter = new StandartWaiter(driver);
     private final String menuItemByTitleSelectorTemplate = "#categories_id a[title=\"%s\"]";
     private final String menuCourseSelectorTemplate = "//div[contains(., '%s') and contains(@class, 'lessons__new-item-title')]";
     private final String catalogCategoriesCheckboxesSelectorTemplate = "//label[text()=\"%s\"]/..//div/input[@checked]";
     private final String logo = ".header3__logo-img";
     private final String buttonCoockiesTemplate = "button.cookies__button";
-    private final String titlesTemplate = "div.lessons__new-item-title";
+    private final String titleCourseTemplate = "div.lessons__new-item-title";
+    private final String courseTemplate = "div.lessons__new-item-container";
+    private final String dateStartTemplate = "div.lessons__new-item-start";
+    private final String timeTemplate = "div.lessons__new-item-time";
 
     public CategoryPage clickCategory(CategoryData categoryData) {
 
@@ -53,7 +57,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
     public List<String> getCoursesStringFromMainPage() {
 
-        List<WebElement> listTitleCourses = driver.findElements((By.cssSelector(titlesTemplate)));
+        List<WebElement> listTitleCourses = driver.findElements((By.cssSelector(titleCourseTemplate)));
         ArrayList<String> titleCourses = new ArrayList<>();
         String title;
         for(WebElement element : listTitleCourses) {
@@ -113,6 +117,78 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
         driver.findElement(By.cssSelector(selector)).click();
 
         return new MainPage(driver);
+    }
+
+    public ArrayList<Course> coursesWithDate() throws ParseException {
+        List<WebElement> elementsCourse = driver.findElements(By.cssSelector(courseTemplate));
+        ArrayList<Course> coursesWithDate = new ArrayList<>();
+        Course courseWithDate = new Course();
+        CoursesData courseDataData = null;
+        List<CoursesData> coursesDataList = Arrays.asList(CoursesData.values());
+
+
+        for (WebElement elementCourse: elementsCourse){
+            WebElement elementName = elementCourse.findElement(By.cssSelector(titleCourseTemplate));
+            String nameCourse = elementName.getText();
+
+            courseDataData = coursesDataList.stream().filter(p -> (p.getName().equals(nameCourse))).findFirst().get();
+
+            List<WebElement> elementsDate = elementCourse.findElements(By.cssSelector(dateStartTemplate));
+            if (elementsDate.size()==0){
+                elementsDate = elementCourse.findElements(By.cssSelector(timeTemplate));
+            }
+
+            String dateString = elementsDate.get(0).getAttribute("innerText");
+
+            Date date = coursesComponent.getDate(coursesComponent.getDateString(dateString));
+
+            courseWithDate.setCoursesData(courseDataData);
+            courseWithDate.setDate(date);
+            coursesWithDate.add(courseWithDate);
+            courseWithDate = new Course();
+        }
+
+        return coursesWithDate;
+    }
+
+
+
+    public String datess(){
+        List<WebElement> elementsCourse = driver.findElements(By.cssSelector("div.lessons__new-item-container"));
+
+        WebElement elementDate = elementsCourse.get(0).findElement(By.cssSelector("div.lessons__new-item-start"));
+        String date = elementDate.getAttribute("innerText");
+        return date;
+    }
+
+    public Course maxCourse(List<Course> courses){
+        Course courseNow = new Course();
+        List<Integer> times = new ArrayList<>();
+        for (Course course : courses){
+            times.add( (int) course.getDate().getTime());
+        }
+
+        Integer time = times.stream().sorted((p1, p2)-> (p2 - p1)).findFirst().get();
+        for (Course course : courses){
+            if (time.equals(course.getDate().getTime())){
+                courseNow = course;
+            }
+        }
+        return courseNow;
+    }
+
+    public Course minCourse(List<Course> courses){
+        Course course = courses.stream().sorted((p1, p2)-> ((int)(p1.getDate().getTime()) - (int)(p2.getDate().getTime()))).findFirst().get();
+        return course;
+    }
+
+    public List<Date> times(List<Course> courses) {
+        Course courseNow = new Course();
+        List<Date> times = new ArrayList<>();
+        for (Course course : courses) {
+            times.add(course.getDate());
+        }
+        return times;
     }
 
 }
