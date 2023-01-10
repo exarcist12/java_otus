@@ -16,17 +16,17 @@ import java.util.List;
 @ExtendWith(UIExtension.class)
 public class MinValueTest {
 
-    @Driver
-    private WebDriver driver;
+   @Driver
+   private WebDriver driver;
 
-    @Test
-    public void test() throws PathEmptyException, ParseException {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.open();
-        MenuComponent menuComponent = new MenuComponent(driver);
-        List<Course> coursesWithDate = menuComponent.coursesWithDate();
-        CoursesData coursesData = menuComponent.minCourse(coursesWithDate).getCoursesData();
-        CoursePage coursePage = menuComponent.clickCourse(coursesData);
-        menuComponent.checkTitlePage(coursePage, CoursesData.QAAUTOJAVA);
-    }
+   @Test
+   public void test() throws PathEmptyException, ParseException {
+      MainPage mainPage = new MainPage(driver);
+      mainPage.open();
+      MenuComponent menuComponent = new MenuComponent(driver);
+      List<Course> coursesWithDate = menuComponent.coursesWithDate();
+      CoursesData coursesData = menuComponent.minCourse(coursesWithDate).getCoursesData();
+      CoursePage coursePage = menuComponent.clickCourse(coursesData);
+      menuComponent.checkTitlePage(coursePage, CoursesData.QAAUTOJAVA);
+   }
 }

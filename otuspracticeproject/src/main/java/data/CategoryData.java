@@ -2,16 +2,16 @@ package data;
 
 public enum CategoryData {
 
-    PROGRAMMER("Программирование"),
-    INFRA("Инфраструктура");
+   PROGRAMMER("Программирование"),
+   INFRA("Инфраструктура");
 
-    private String name;
+   private String name;
 
-    CategoryData(String name) {
-        this.name = name;
-    }
+   CategoryData(String name) {
+      this.name = name;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 }
