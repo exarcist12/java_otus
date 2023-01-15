@@ -27,7 +27,7 @@ public class MaxValueTest {
    private WebDriver driver;
 
    @Test
-   public void test() throws PathEmptyException, ParseException {
+   public void MaxValueTest() throws PathEmptyException, ParseException {
       MainPage mainPage = new MainPage(driver);
       mainPage.open();
       MenuComponent menuComponent = new MenuComponent(driver);

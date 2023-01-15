@@ -27,6 +27,6 @@ public class MinValueTest {
       List<Course> coursesWithDate = menuComponent.coursesWithDate();
       CoursesData coursesData = menuComponent.minCourse(coursesWithDate).getCoursesData();
       CoursePage coursePage = menuComponent.clickCourse(coursesData);
-      menuComponent.checkTitlePage(coursePage, CoursesData.QAAUTOJAVA);
+      menuComponent.checkTitlePage(coursePage, CoursesData.LINUXADMINISTRATOR);
    }
 }
