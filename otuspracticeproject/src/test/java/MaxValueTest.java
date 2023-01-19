@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
@@ -26,14 +27,17 @@ public class MaxValueTest {
    @Driver
    private WebDriver driver;
 
+
    @Test
    public void MaxValueTest() throws PathEmptyException, ParseException {
       MainPage mainPage = new MainPage(driver);
       mainPage.open();
       MenuComponent menuComponent = new MenuComponent(driver);
       List<Course> coursesWithDate = menuComponent.coursesWithDate();
-      CoursesData coursesData = menuComponent.maxCourse(coursesWithDate).getCoursesData();
+      CoursesData coursesData = menuComponent.function(coursesWithDate, Long::max).getCoursesData();
       CoursePage coursePage = menuComponent.clickCourse(coursesData);
       menuComponent.checkTitlePage(coursePage, CoursesData.PHPDEVELOPER);
    }
+
+
 }

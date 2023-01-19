@@ -17,6 +17,7 @@ public enum CoursesData {
    CPLUSPLUS("Специализация С++", "C++ DEVELOPER", CategoryData.PROGRAMMER),
    CSHARP("Специализация С#", "C# Developer", CategoryData.PROGRAMMER),
    PHPDEVELOPER("Специализация PHP Developer", "СпециализацияPHP Developer", CategoryData.PROGRAMMER),
+   BI("BI-аналитика", "BI-аналитика", CategoryData.PROGRAMMER),
    PHPDEVELOPER2("Специализация PHP Developer2", "Специализация PHP Developer2", CategoryData.PROGRAMMER),
    PHPDEVELOPER3("Специализация PHP Develope3","Специализация PHP Developer3", CategoryData.PROGRAMMER),
    PHPDEVELOPER4("Специализация PHP Developer4", "Специализация PHP Developer4", CategoryData.PROGRAMMER),

@@ -25,7 +25,7 @@ public class MinValueTest {
       mainPage.open();
       MenuComponent menuComponent = new MenuComponent(driver);
       List<Course> coursesWithDate = menuComponent.coursesWithDate();
-      CoursesData coursesData = menuComponent.minCourse(coursesWithDate).getCoursesData();
+      CoursesData coursesData = menuComponent.function(coursesWithDate, Long::min).getCoursesData();
       CoursePage coursePage = menuComponent.clickCourse(coursesData);
       menuComponent.checkTitlePage(coursePage, CoursesData.LINUXADMINISTRATOR);
    }

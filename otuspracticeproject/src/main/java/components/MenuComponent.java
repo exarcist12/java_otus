@@ -12,8 +12,10 @@ import pages.CoursePage;
 import pages.MainPage;
 import waiters.StandartWaiter;
 
+import javax.xml.crypto.Data;
 import java.text.ParseException;
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -152,21 +154,51 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
 
 
-   public String datess(){
-      List<WebElement> elementsCourse = driver.findElements(By.cssSelector("div.lessons__new-item-container"));
+//   public String datess(){
+//      List<WebElement> elementsCourse = driver.findElements(By.cssSelector("div.lessons__new-item-container"));
+//
+//      WebElement elementDate = elementsCourse.get(0).findElement(By.cssSelector("div.lessons__new-item-start"));
+//      String date = elementDate.getAttribute("innerText");
+//      return date;
+//   }
 
-      WebElement elementDate = elementsCourse.get(0).findElement(By.cssSelector("div.lessons__new-item-start"));
-      String date = elementDate.getAttribute("innerText");
-      return date;
-   }
+//   public Course maxCourse(List<Course> courses){
+//      Course course = courses.stream().reduce((p1, p2) -> (p2.getDate().getTime() > p1.getDate().getTime() ? p2 : p1)).get();
+//      return course;
+//   }
+//
+//   public Course minCourse(List<Course> courses){
+//      Course course = courses.stream().reduce((p1, p2) -> (p1.getDate().getTime() > p2.getDate().getTime() ? p2 : p1)).get();
+//      return course;
+//   }
+//
+//   public Course minCourse2(List<Course> courses){
+//      BinaryOperator<Course> accumulator = (p1, p2) -> (p1.getDate().getTime() > p2.getDate().getTime() ? p2 : p1);
+//      Course course = courses.stream().reduce(accumulator).get();
+//      return course;
+//   }
 
-   public Course maxCourse(List<Course> courses){
-      Course course = courses.stream().reduce((p1, p2) -> (p2.getDate().getTime() > p1.getDate().getTime() ? p2 : p1)).get();
+//   public Long minCourse3(List<Course> courses){
+//      Optional<Long> min = courses.stream().map(p1 -> p1.getDate().getTime()).reduce(Long::min);
+//      Long min = null;
+//      courses.stream().reduce((p1, p2) -> {
+//         Long t1 = p1.getDate().getTime();
+//         Long t2 = p2.getDate().getTime();
+//         Optional<Long> minimum = Optional.of(Long.min(t1, t2));
+//         return minimum;
+//      }).
+//      return min;
+//   }
+
+   public Course function(List<Course> courses, BinaryOperator<Long> accumulator){
+//из списка курсов получаем список дат (в виде миллисекунд в Integer)
+      List<Long> dates = courses.stream().map(p1 ->  p1.getDate().getTime()).collect(Collectors.toList());
+//из списка дат получаем минимальное максимально
+      Long value = dates.stream().reduce(accumulator).get();
+//по полученной дате получаем курс
+      Course course = courses.stream().filter(p1 -> p1.getDate().getTime() == value).findFirst().get();
+
       return course;
    }
 
-   public Course minCourse(List<Course> courses){
-      Course course = courses.stream().reduce((p1, p2) -> (p1.getDate().getTime() > p2.getDate().getTime() ? p2 : p1)).get();
-      return course;
-   }
 }
