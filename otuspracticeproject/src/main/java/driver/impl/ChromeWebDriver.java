@@ -14,7 +14,7 @@ import java.util.logging.Level;
 
 public class ChromeWebDriver implements IDriver {
 
-   @Override
+  @Override
   public WebDriver newDriver() {
     ChromeOptions chromeOptions = new ChromeOptions();
     chromeOptions.addArguments("--no-sandbox");
@@ -28,7 +28,7 @@ public class ChromeWebDriver implements IDriver {
     chromeOptions.setCapability("enableVNC", Boolean.parseBoolean(System.getProperty("enableVNC", "false")));
     chromeOptions.setHeadless(HEADLESS);
 
-     LoggingPreferences logPrefs = new LoggingPreferences();
+    LoggingPreferences logPrefs = new LoggingPreferences();
     logPrefs.enable(LogType.PERFORMANCE, Level.INFO);
     chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 

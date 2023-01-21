@@ -24,20 +24,17 @@ import java.util.stream.Collectors;
 @ExtendWith(UIExtension.class)
 public class MaxValueTest {
 
-   @Driver
-   private WebDriver driver;
+  @Driver
+  private WebDriver driver;
 
-
-   @Test
-   public void MaxValueTest() throws PathEmptyException, ParseException {
-      MainPage mainPage = new MainPage(driver);
-      mainPage.open();
-      MenuComponent menuComponent = new MenuComponent(driver);
-      List<Course> coursesWithDate = menuComponent.coursesWithDate();
-      CoursesData coursesData = menuComponent.function(coursesWithDate, Long::max).getCoursesData();
-      CoursePage coursePage = menuComponent.clickCourse(coursesData);
-      menuComponent.checkTitlePage(coursePage, CoursesData.PHPDEVELOPER);
-   }
-
-
+  @Test
+  public void maxValueTest() throws PathEmptyException, ParseException {
+    MainPage mainPage = new MainPage(driver);
+    mainPage.open();
+    MenuComponent menuComponent = new MenuComponent(driver);
+    List<Course> coursesWithDate = menuComponent.coursesWithDate();
+    CoursesData coursesData = menuComponent.function(coursesWithDate, Long::max).getCoursesData();
+    CoursePage coursePage = menuComponent.clickCourse(coursesData);
+    menuComponent.checkTitlePage(coursePage, CoursesData.PHPDEVELOPER);
+  }
 }

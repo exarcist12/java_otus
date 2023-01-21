@@ -14,20 +14,19 @@ import java.util.List;
 @ExtendWith(UIExtension.class)
 public class ClickCourseMenuTest {
 
-   @Driver
-   private WebDriver driver;
+  @Driver
+  private WebDriver driver;
 
-   @Test
-   public void clickCourseMenuTest() throws PathEmptyException {
+  @Test
+  public void clickCourseMenuTest() throws PathEmptyException {
 
-      String courseName = "Специализация сетевой инженер";
-      MainPage mainPage = new MainPage(driver);
-      mainPage.open();
-      driver.manage().window().fullscreen();
-      MenuComponent menuComponent = new MenuComponent(driver);
-      CoursesData coursesData = menuComponent.filterCourseName(courseName);
-      CoursePage coursePage = menuComponent.clickCourse(coursesData);
-      menuComponent.checkTitlePage(coursePage, coursesData);
-   }
-
+    String courseName = "Специализация сетевой инженер";
+    MainPage mainPage = new MainPage(driver);
+    mainPage.open();
+    driver.manage().window().fullscreen();
+    MenuComponent menuComponent = new MenuComponent(driver);
+    CoursesData coursesData = menuComponent.filterCourseName(courseName);
+    CoursePage coursePage = menuComponent.clickCourse(coursesData);
+    menuComponent.checkTitlePage(coursePage, coursesData);
+  }
 }

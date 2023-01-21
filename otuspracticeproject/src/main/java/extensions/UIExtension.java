@@ -26,7 +26,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback, After
 
   private EventFiringWebDriver driver = null;
 
-   @Override
+  @Override
   public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
     boolean testResult = extensionContext.getExecutionException().isPresent();
     if(testResult) {
@@ -48,7 +48,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback, After
     return set;
   }
 
-   @Override
+  @Override
   public void beforeEach(ExtensionContext extensionContext) {
     driver = new DriverFactory().getDriver();
     driver.register(new MouseListener());
@@ -71,7 +71,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback, After
     }
   }
 
-   @Override
+  @Override
   public void afterEach(ExtensionContext extensionContext) {
     if(driver != null) {
       driver.close();
