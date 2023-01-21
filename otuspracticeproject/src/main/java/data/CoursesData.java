@@ -25,29 +25,28 @@ public enum CoursesData {
    PHPDEVELOPER6("Специализация PHP Developer6", "Специализация PHP Developer6", CategoryData.PROGRAMMER),
    PHPDEVELOPER7("Специализация PHP Developer7", "Специализация PHP Developer7", CategoryData.PROGRAMMER);
 
-   private String name;
-   private String pageTitle;
-   private CategoryData categoryData;
+  private String name;
+  private String pageTitle;
+  private CategoryData categoryData;
 
-   CoursesData (String name, String pageTitle, CategoryData categoryData) {
-      this.name = name;
-      this.pageTitle = pageTitle;
-      this.categoryData = categoryData;
-   }
+  CoursesData(String name, String pageTitle, CategoryData categoryData) {
+    this.name = name;
+    this.pageTitle = pageTitle;
+    this.categoryData = categoryData;
+  }
 
-   public String getName() {
-      return name;
-   }
+  public String getName() {
+    return name;
+  }
 
-   public String getPageTitle() {
-      return pageTitle;
-   }
-   public void setName(String name) {
-      this.name = name;
-   }
-   public CategoryData getCategoryData() {
-      return categoryData;
-   }
-
+  public String getPageTitle() {
+    return pageTitle;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public CategoryData getCategoryData() {
+    return categoryData;
+  }
 
 }
