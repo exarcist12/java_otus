@@ -12,6 +12,7 @@ import pages.MainPage;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 @ExtendWith(UIExtension.class)
 public class MinValueTest {
@@ -25,7 +26,7 @@ public class MinValueTest {
     mainPage.open();
     MenuComponent menuComponent = new MenuComponent(driver);
     List<Course> coursesWithDate = menuComponent.coursesWithDate();
-    CoursesData coursesData = menuComponent.function(coursesWithDate, Long::min).getCoursesData();
+    CoursesData coursesData = menuComponent.function(coursesWithDate, BinaryOperator.minBy((p1, p2) -> p1.compareTo(p2))).getCoursesData();
     CoursePage coursePage = menuComponent.clickCourse(coursesData);
     menuComponent.checkTitlePage(coursePage, CoursesData.LINUXADMINISTRATOR);
   }

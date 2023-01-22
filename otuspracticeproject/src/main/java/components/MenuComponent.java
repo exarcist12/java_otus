@@ -17,6 +17,7 @@ import waiters.StandartWaiter;
 
 import javax.xml.crypto.Data;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
@@ -141,7 +142,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
       String dateString = elementsDate.get(0).getAttribute("innerText");
 
-      Date date = coursesComponent.getDate(coursesComponent.getDateString(dateString));
+      LocalDate date = coursesComponent.getDate(coursesComponent.getDateString(dateString));
 
       courseWithDate.setCoursesData(courseDataData);
       courseWithDate.setDate(date);
@@ -152,18 +153,15 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
     return coursesWithDate;
   }
 
-  public Course function(List<Course> courses, BinaryOperator<Long> accumulator){
 
-    //из списка курсов получаем список дат (в виде миллисекунд в Integer)
-    List<Long> dates = courses.stream().map(p1 ->  p1.getDate().getTime()).collect(Collectors.toList());
+  public Course function(List<Course> courses, BinaryOperator<LocalDate> accumulator){
 
-    //из списка дат получаем минимальное максимально
-    Long value = dates.stream().reduce(accumulator).get();
+    List<LocalDate> dates = courses.stream().map(p1 -> p1.getDate()).collect(Collectors.toList());
 
-    //по полученной дате получаем курс
-    Course course = courses.stream().filter(p1 -> p1.getDate().getTime() == value).findFirst().get();
+    LocalDate date =dates.stream().reduce(accumulator).get();
+
+    Course course = courses.stream().filter(p1 -> p1.getDate() == date).findFirst().get();
 
     return course;
   }
-
 }

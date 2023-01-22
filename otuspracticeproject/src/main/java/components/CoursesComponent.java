@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
@@ -56,17 +58,21 @@ public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
     return date;
   }
 
-  public Date getDate(String dateString) throws ParseException {
+  public LocalDate getDate(String dateString) throws ParseException {
     Date date;
+    LocalDate localDate;
     try {
       DateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("ru"));
       date = format.parse(dateString);
+      localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
     }
     catch(ParseException e) {
       DateFormat format = new SimpleDateFormat("dd MMMM yyyy", new Locale("en"));
       date = format.parse(dateString);
+      localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
-    return date;
+    return localDate;
   }
 }

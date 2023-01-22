@@ -1,9 +1,10 @@
 package data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Course {
-  Date date;
+  LocalDate date;
   CoursesData coursesData;
 
   public Course(){
@@ -11,7 +12,7 @@ public class Course {
     this.coursesData = coursesData;
   }
 
-  public Date getDate() {
+  public LocalDate getDate() {
     return date;
   }
 
@@ -19,7 +20,7 @@ public class Course {
     return coursesData;
   }
 
-  public void setDate(Date date) {
+  public void setDate(LocalDate date) {
     this.date = date;
   }
 
