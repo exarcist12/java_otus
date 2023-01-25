@@ -1,4 +1,4 @@
-package data.pages;
+package pages;
 
 import com.google.inject.Inject;
 import org.openqa.selenium.WebElement;

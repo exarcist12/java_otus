@@ -1,7 +1,6 @@
-package data.pages;
+package pages;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
 import support.GuiceScoped;
 
 public class CategoryPage extends AbsBasePage<CategoryPage> {

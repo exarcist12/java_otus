@@ -7,8 +7,8 @@ import extensions.UIExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import data.pages.CoursePage;
-import data.pages.MainPage;
+import pages.CoursePage;
+import pages.MainPage;
 import support.GuiceScoped;
 
 import javax.inject.Inject;

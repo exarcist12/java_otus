@@ -1,10 +1,9 @@
-package data.pages;
+package pages;
 
 import annotations.Path;
 import com.google.inject.Inject;
 import exceptions.PathEmptyException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import pageobject.AbsPageObject;
 import support.GuiceScoped;
 import waiters.StandartWaiter;

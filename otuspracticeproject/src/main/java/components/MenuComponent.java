@@ -10,9 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import data.pages.CategoryPage;
-import data.pages.CoursePage;
-import data.pages.MainPage;
+import pages.CategoryPage;
+import pages.CoursePage;
+import pages.MainPage;
 import support.GuiceScoped;
 import waiters.StandartWaiter;
 

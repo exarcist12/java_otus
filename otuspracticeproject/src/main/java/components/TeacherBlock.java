@@ -1,8 +1,7 @@
 package components;
 
 import com.google.inject.Inject;
-import data.pages.TeacherPage;
-import org.openqa.selenium.WebDriver;
+import pages.TeacherPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import support.GuiceScoped;

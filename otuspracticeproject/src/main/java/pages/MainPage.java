@@ -1,4 +1,4 @@
-package data.pages;
+package pages;
 
 import annotations.Path;
 import com.google.inject.Inject;

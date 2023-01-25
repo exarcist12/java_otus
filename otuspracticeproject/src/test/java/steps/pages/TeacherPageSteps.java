@@ -1,7 +1,7 @@
 package steps.pages;
 
 import com.google.inject.Inject;
-import data.pages.TeacherPage;
+import pages.TeacherPage;
 import io.cucumber.java.ru.Тогда;
 
 public class TeacherPageSteps {
