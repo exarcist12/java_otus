@@ -6,22 +6,25 @@ import extensions.UIExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import pages.CoursePage;
-import pages.MainPage;
+import data.pages.CoursePage;
+import data.pages.MainPage;
+import support.GuiceScoped;
 
-import java.util.List;
+import javax.inject.Inject;
 
 @ExtendWith(UIExtension.class)
 public class ClickCourseMenuTest {
 
   @Driver
   private WebDriver driver;
+  @Inject
+  GuiceScoped guiceScoped;
 
   @Test
   public void clickCourseMenuTest() throws PathEmptyException {
 
     String courseName = "Специализация сетевой инженер";
-    MainPage mainPage = new MainPage(driver);
+    MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
     driver.manage().window().fullscreen();
     MenuComponent menuComponent = new MenuComponent(driver);

@@ -6,17 +6,22 @@ import extensions.UIExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import pages.MainPage;
+import data.pages.MainPage;
+import support.GuiceScoped;
+
+import javax.inject.Inject;
 
 @ExtendWith(UIExtension.class)
 public class ClickCategoryMenuTest {
 
   @Driver
   private WebDriver driver;
+  @Inject
+  GuiceScoped guiceScoped;
   @Test
   public void clickCategoryMenuItem() throws PathEmptyException, InterruptedException {
 
-    MainPage mainPage = new MainPage(driver);
+    MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
     MenuComponent menuComponent = new MenuComponent(driver);
     menuComponent.clickCategory(CategoryData.PROGRAMMER);

@@ -6,7 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class StandartWaiter{
+public class StandartWaiter {
+
 
   private WebDriver driver;
 
@@ -14,22 +15,13 @@ public class StandartWaiter{
     this.driver = driver;
   }
 
-
   public boolean waitForCondition(ExpectedCondition condition) {
-    WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+    WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
     try {
       webDriverWait.until(condition);
       return true;
-    } catch (Exception ex) {
+    } catch (Exception ignored) {
       return false;
     }
-  }
-
-  public boolean waitForElementVisible(WebElement element) {
-    return waitForCondition(ExpectedConditions.visibilityOf(element));
-  }
-
-  public boolean waitForElementNotVisible(WebElement element) {
-    return waitForCondition(ExpectedConditions.invisibilityOf(element));
   }
 }

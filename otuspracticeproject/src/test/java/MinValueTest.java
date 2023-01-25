@@ -7,9 +7,11 @@ import extensions.UIExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import pages.CoursePage;
-import pages.MainPage;
+import data.pages.CoursePage;
+import data.pages.MainPage;
+import support.GuiceScoped;
 
+import javax.inject.Inject;
 import java.text.ParseException;
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -19,10 +21,12 @@ public class MinValueTest {
 
   @Driver
   private WebDriver driver;
+  @Inject
+  GuiceScoped guiceScoped;
 
   @Test
   public void minValueTest() throws PathEmptyException, ParseException {
-    MainPage mainPage = new MainPage(driver);
+    MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
     MenuComponent menuComponent = new MenuComponent(driver);
     List<Course> coursesWithDate = menuComponent.coursesWithDate();
