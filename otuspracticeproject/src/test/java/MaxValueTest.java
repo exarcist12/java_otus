@@ -28,7 +28,7 @@ public class MaxValueTest {
   public void maxValueTest() throws PathEmptyException, ParseException {
     MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
-    MenuComponent menuComponent = new MenuComponent(driver);
+    MenuComponent menuComponent = new MenuComponent(guiceScoped);
     List<Course> coursesWithDate = menuComponent.coursesWithDate();
     CoursesData coursesData = menuComponent.function(coursesWithDate, BinaryOperator.maxBy((p1,p2) -> p1.compareTo(p2))).getCoursesData();
     CoursePage coursePage = menuComponent.clickCourse(coursesData);

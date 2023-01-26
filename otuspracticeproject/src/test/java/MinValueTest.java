@@ -24,11 +24,12 @@ public class MinValueTest {
   @Inject
   GuiceScoped guiceScoped;
 
+
   @Test
   public void minValueTest() throws PathEmptyException, ParseException {
     MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
-    MenuComponent menuComponent = new MenuComponent(driver);
+    MenuComponent menuComponent = new MenuComponent(guiceScoped);
     List<Course> coursesWithDate = menuComponent.coursesWithDate();
     CoursesData coursesData = menuComponent.function(coursesWithDate, BinaryOperator.minBy((p1, p2) -> p1.compareTo(p2))).getCoursesData();
     CoursePage coursePage = menuComponent.clickCourse(coursesData);

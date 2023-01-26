@@ -23,7 +23,7 @@ public class ClickCategoryMenuTest {
 
     MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
-    MenuComponent menuComponent = new MenuComponent(driver);
+    MenuComponent menuComponent = new MenuComponent(guiceScoped);
     menuComponent.clickCategory(CategoryData.PROGRAMMER);
     menuComponent.menuItemActive(CategoryData.PROGRAMMER);
 

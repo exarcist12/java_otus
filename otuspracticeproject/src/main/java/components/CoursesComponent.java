@@ -1,6 +1,14 @@
 package components;
 
+import com.google.inject.Inject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import pages.CoursePage;
+import pages.TeacherPage;
+import support.GuiceScoped;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,9 +17,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
-  public CoursesComponent(WebDriver driver) {
-    super(driver);
+public class CoursesComponent extends AbsComponent<CoursesComponent> {
+  @Inject
+  public CoursesComponent(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
 
@@ -74,5 +83,28 @@ public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
     }
 
     return localDate;
+  }
+
+
+
+  @FindBy(css = ".lessons__new-item-container")
+  private List<WebElement> courseTabs;
+
+  @FindBy(css = "button.cookies__button")
+  private List<WebElement> buttonCoockies;
+
+
+  public CoursePage clickCoursePage(String text) {
+    WebElement course = null;
+    for (WebElement element : courseTabs) {
+      course = element.findElement(By.xpath("//div[contains(text(), '"+ text +"')]"));
+    }
+
+    if (buttonCoockies.size()>0){
+      buttonCoockies.get(0).click();
+    }
+    course.click();
+    return new CoursePage(guiceScoped);
+
   }
 }

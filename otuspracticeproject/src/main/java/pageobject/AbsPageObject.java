@@ -8,15 +8,16 @@ import waiters.StandartWaiter;
 
 public abstract class AbsPageObject<T> {
 
-	protected WebDriver driver;
-	protected StandartWaiter standartWaiter;
-	protected GuiceScoped guiceScoped;
+	 WebDriver driver;
+	 StandartWaiter standartWaiter;
+	 @Inject
+	 GuiceScoped guiceScoped;
 
-	@Inject
+
 	public AbsPageObject(GuiceScoped guiceScoped) {
 		this.guiceScoped = guiceScoped;
 		this.driver = guiceScoped.driver;
-		this.standartWaiter = new StandartWaiter(driver);
+		this.standartWaiter = new StandartWaiter(guiceScoped.driver);
 
 		PageFactory.initElements(guiceScoped.driver, this);
 	}

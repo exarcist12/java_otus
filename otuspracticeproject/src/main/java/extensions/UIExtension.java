@@ -51,7 +51,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback, After
   @Override
   public void beforeEach(ExtensionContext extensionContext) {
     driver = new DriverFactory().getDriver();
-    driver.register(new MouseListener());
+//    driver.register(new MouseListener());
     Set<Field> fields = getAnnotatedFields(Driver.class, extensionContext);
 
     for (Field field : fields) {

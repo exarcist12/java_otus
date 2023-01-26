@@ -23,15 +23,15 @@ import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
-public class MenuComponent extends AbsBaseComponent<MenuComponent> {
+public class MenuComponent extends AbsComponent<MenuComponent> {
 
-  public MenuComponent(WebDriver driver) {
-    super(driver);
-  }
-  CoursesComponent coursesComponent = new CoursesComponent(driver);
-  StandartWaiter standartWaiter = new StandartWaiter(driver);
   @Inject
-  GuiceScoped guiceScoped;
+  public MenuComponent(GuiceScoped guiceScoped) {
+    super(guiceScoped);
+  }
+  CoursesComponent coursesComponent = new CoursesComponent(guiceScoped);
+  StandartWaiter standartWaiter = new StandartWaiter(guiceScoped.driver);
+
   private final String menuItemByTitleSelectorTemplate = "#categories_id a[title=\"%s\"]";
   private final String menuCourseSelectorTemplate = "//div[contains(., '%s') and contains(@class, 'lessons__new-item-title')]";
   private final String catalogCategoriesCheckboxesSelectorTemplate = "//label[text()=\"%s\"]/..//div/input[@checked]";
@@ -112,7 +112,7 @@ public class MenuComponent extends AbsBaseComponent<MenuComponent> {
 
     assertThat("Тайтл не совпал", coursePage.getPageTitle(), equalTo(coursesData.getPageTitle()));
 
-    return new CoursesComponent(driver);
+    return new CoursesComponent(guiceScoped);
   }
 
 

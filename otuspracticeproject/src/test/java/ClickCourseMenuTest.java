@@ -27,7 +27,7 @@ public class ClickCourseMenuTest {
     MainPage mainPage = new MainPage(guiceScoped);
     mainPage.open();
     driver.manage().window().fullscreen();
-    MenuComponent menuComponent = new MenuComponent(driver);
+    MenuComponent menuComponent = new MenuComponent(guiceScoped);
     CoursesData coursesData = menuComponent.filterCourseName(courseName);
     CoursePage coursePage = menuComponent.clickCourse(coursesData);
     menuComponent.checkTitlePage(coursePage, coursesData);

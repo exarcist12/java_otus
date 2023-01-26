@@ -12,6 +12,7 @@ public abstract class AbsBasePage<T> extends AbsPageObject<T> {
 
   protected WebDriver driver;
   protected StandartWaiter standartWaiter;
+  @Inject
   protected GuiceScoped guiceScoped;
 
   private String baseUrl = System.getProperty("webdriver.base.url", "https://otus.ru");
@@ -20,7 +21,7 @@ public abstract class AbsBasePage<T> extends AbsPageObject<T> {
 //    this.driver = driver;
 //  }
 
-  @Inject
+
   public AbsBasePage(GuiceScoped guiceScoped) {
     super(guiceScoped);
   }
@@ -50,7 +51,7 @@ public abstract class AbsBasePage<T> extends AbsPageObject<T> {
 
   public T open() {
 
-    driver.get(baseUrl + getPagePath());
+    guiceScoped.driver.get(baseUrl + getPagePath());
 
     return (T) this;
   }
