@@ -21,4 +21,20 @@ public class CoursePage extends AbsBasePage<CoursePage> {
     String text = titleElement.get(0).getAttribute("innerText");
     return text;
   }
+
+
+  @FindBy(xpath = "//*[contains(text(), 'Стоимость обучения')]/../..")
+  private WebElement priceElement;
+  public Integer getPrice() {
+    String text = priceElement.getAttribute("outerText");
+    String[] outerText = text.split("\n");
+    String sum = outerText[outerText.length-1];
+    sum = sum.replace(" ", "")
+            .replace("₽", "");
+
+    Integer price = Integer.valueOf(sum);
+    return price;
+  }
+
+
 }

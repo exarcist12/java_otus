@@ -1,8 +1,12 @@
 package steps.common;
 
 import com.google.inject.Inject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import pages.MainPage;
 import io.cucumber.java.ru.Пусть;
+
+import java.io.IOException;
 
 public class CommonSteps {
 
@@ -13,5 +17,6 @@ public class CommonSteps {
 	public void openPage() {
 		mainPage.open();
 	}
+
 
 }

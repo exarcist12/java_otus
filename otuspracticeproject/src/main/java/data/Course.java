@@ -7,13 +7,20 @@ public class Course {
   LocalDate date;
   CoursesData coursesData;
 
+  Integer price;
+
   public Course(){
     this.date = date;
     this.coursesData = coursesData;
+    this.price = price;
   }
 
   public LocalDate getDate() {
     return date;
+  }
+
+  public Integer getPrice() {
+    return price;
   }
 
   public CoursesData getCoursesData() {
@@ -22,6 +29,9 @@ public class Course {
 
   public void setDate(LocalDate date) {
     this.date = date;
+  }
+  public void setPrice(Integer price) {
+    this.price = price;
   }
 
   public void setCoursesData(CoursesData coursesData) {

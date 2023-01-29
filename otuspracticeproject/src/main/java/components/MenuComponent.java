@@ -6,10 +6,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import data.CategoryData;
 import data.Course;
 import data.CoursesData;
+import io.cucumber.java.ru.Если;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import pages.CategoryPage;
 import pages.CoursePage;
 import pages.MainPage;
@@ -29,7 +31,7 @@ public class MenuComponent extends AbsComponent<MenuComponent> {
   public MenuComponent(GuiceScoped guiceScoped) {
     super(guiceScoped);
   }
-  CoursesComponent coursesComponent = new CoursesComponent(guiceScoped);
+
   StandartWaiter standartWaiter = new StandartWaiter(guiceScoped.driver);
 
   private final String menuItemByTitleSelectorTemplate = "#categories_id a[title=\"%s\"]";
@@ -167,4 +169,59 @@ public class MenuComponent extends AbsComponent<MenuComponent> {
 
     return course;
   }
+
+
+  @FindBy(css = "div.lessons__new-item-container")
+  List<WebElement> elementsCourse;
+  @Inject
+  public MainPage mainPage;
+  @Inject
+  public CoursePage coursePage;
+  @Inject
+  public CoursesComponent coursesComponent;
+
+  public ArrayList<Course> coursesWithDateWithPrice() throws ParseException {
+    ArrayList<Course> coursesWithDateWithPrice = new ArrayList<>();
+    Course courseWithDate = new Course();
+    CoursesData courseDataData = null;
+    List<CoursesData> coursesDataList = Arrays.asList(CoursesData.values());
+
+
+    for (WebElement elementCourse: elementsCourse){
+      WebElement elementName = elementCourse.findElement(By.cssSelector(titleCourseTemplate));
+      String nameCourse = elementName.getText();
+
+      courseDataData = coursesDataList.stream().filter(p -> (p.getName().equals(nameCourse))).findFirst().get();
+
+      List<WebElement> elementsDate = elementCourse.findElements(By.cssSelector(dateStartTemplate));
+      if (elementsDate.size()==0){
+        elementsDate = elementCourse.findElements(By.cssSelector(timeTemplate));
+      }
+
+      String dateString = elementsDate.get(0).getAttribute("innerText");
+
+      LocalDate date = coursesComponent.getDate(coursesComponent.getDateString(dateString));
+
+      courseWithDate.setCoursesData(courseDataData);
+      courseWithDate.setDate(date);
+      coursesWithDateWithPrice.add(courseWithDate);
+      courseWithDate = new Course();
+    }
+
+
+    for(int i =0;i<coursesWithDateWithPrice.size();i++) {
+      CoursePage coursePageNow = coursesComponent.clickCoursePage(coursesWithDateWithPrice.get(i).getCoursesData().getName());
+      Integer price = coursePageNow.getPrice();
+      courseWithDate.setPrice(price);
+      mainPage.open();
+    }
+
+    return coursesWithDateWithPrice;
+  }
+
+  @Если("Кликнуть на все курсы и подсчитать суммы")
+  void getCourseWithPrice() throws ParseException {
+    ArrayList<Course> list = coursesWithDateWithPrice();
+  }
+
 }

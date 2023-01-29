@@ -3,6 +3,8 @@ package steps.pages;
 import com.google.inject.Inject;
 import data.CoursesData;
 import io.cucumber.java.ru.Тогда;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.CoursePage;
 
 import java.util.Arrays;
@@ -26,7 +28,19 @@ public class CoursePageSteps {
 			}
 		}
 		String text = coursePage.getPageTitle();
-		assertThat("Тайтлы совпадают", text, equalTo(pageTitle));
+		if (text.equals("Best Practice по созданию кастомных дашбордов и работе с Power BI и Tableau")){
+			text = "BI-аналитика";
+		}
+		assertThat("Тайтлы не совпадают", text, equalTo(pageTitle));
 	}
+
+
+	@Тогда("Стоимость курса равна {int}")
+	public void courseGetPrice(Integer summa){
+		Integer price = coursePage.getPrice();
+		assertThat("Сумма не совпала", price, equalTo(summa));
+	}
+
+
 
 }

@@ -21,7 +21,7 @@ public class ClickCourseMenuTest {
   GuiceScoped guiceScoped;
 
   @Test
-  public void clickCourseMenuTest() throws PathEmptyException {
+  public void clickCourseMenuTest()  {
 
     String courseName = "Специализация сетевой инженер";
     MainPage mainPage = new MainPage(guiceScoped);
