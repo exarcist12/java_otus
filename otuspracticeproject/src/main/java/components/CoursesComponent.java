@@ -65,8 +65,8 @@ public class CoursesComponent extends AbsComponent<CoursesComponent> {
         listString.add("2023");
       }
 
-      if (listString.get(1).equals("октябре")){
-        listString.set(1, "октября");
+      if (listString.get(1).equals("сентябре")){
+        listString.set(1, "сентября");
       }
     }
 
