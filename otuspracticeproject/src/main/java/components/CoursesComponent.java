@@ -48,6 +48,10 @@ public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
       if (listString.get(1).equals("октябре")){
         listString.set(1, "октября");
       }
+
+      if (listString.get(1).equals("сентябре")){
+        listString.set(1, "сентября");
+      }
     }
 
     if ((listString.size()<3)) {
