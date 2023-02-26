@@ -10,13 +10,11 @@ import java.io.IOException;
 
 public class CommonSteps {
 
-	@Inject
-	private MainPage mainPage;
+  @Inject
+  private MainPage mainPage;
 
-	@Пусть("Открыта главная страница в браузере")
-	public void openPage() {
-		mainPage.open();
-	}
-
-
+  @Пусть("Открыта главная страница в браузере")
+  public void openPage() {
+    mainPage.open();
+  }
 }

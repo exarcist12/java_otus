@@ -6,12 +6,12 @@ import io.cucumber.java.ru.Если;
 
 public class TeacherBlockSteps {
 
-	@Inject
-	private TeacherBlock teacherBlock;
+  @Inject
+  private TeacherBlock teacherBlock;
 
-	@Если("Кликнуть на {int} плитку преподавателя")
-	public void clickTeacherTile(int number) {
-		teacherBlock.clickTeacherTileByIndex(number);
-	}
+  @Если("Кликнуть на {int} плитку преподавателя")
+  public void clickTeacherTile(int number) {
+    teacherBlock.clickTeacherTileByIndex(number);
+  }
 
 }

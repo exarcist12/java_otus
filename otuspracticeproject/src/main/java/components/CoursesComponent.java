@@ -3,7 +3,6 @@ package components;
 import com.google.inject.Inject;
 import data.Course;
 import data.CoursesData;
-import io.cucumber.java.mn.Харин;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,8 +22,6 @@ import java.time.ZoneId;
 import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
-
-import static org.hamcrest.Matchers.not;
 
 public class CoursesComponent extends AbsComponent<CoursesComponent> {
 
@@ -191,87 +188,87 @@ public class CoursesComponent extends AbsComponent<CoursesComponent> {
 
 
 
-      Element x = null;
-      Elements documentCourseElements = documentCourse.select("div.tn-atom");
-      for (Element element : documentCourseElements) {
-        if (element.text().contains("Стоимость обучения")) {
+        Element x = null;
+        Elements documentCourseElements = documentCourse.select("div.tn-atom");
+        for (Element element : documentCourseElements) {
+          if (element.text().contains("Стоимость обучения")) {
+            Elements children;
+            List<Element> newlistchild = new ArrayList<>();
+            List<Element> newlistchildWithoutEmptyFields = new ArrayList<>();
+            x = element;
+            Element parent = x.parent();
+            Element parentPrice = parent.parent();
+            Elements childsParentPrice = parentPrice.children();
+            String s;
+            Integer a = 10;
+            children = parentPrice.getAllElements();
+            for (Element child : children) {
+              Elements spisok = child.getAllElements();
+              if (child.getAllElements().size() == 1) {
+                newlistchild.add(child);
+
+              }
+            }
+
+            for (Element elementNewListChild : newlistchild) {
+              if (!elementNewListChild.text().equals("")) {
+                newlistchildWithoutEmptyFields.add(elementNewListChild);
+              }
+            }
+
+            for (int i = 0; i < newlistchildWithoutEmptyFields.size(); i++) {
+              if (newlistchildWithoutEmptyFields.get(i).text().contains("₽")) {
+                String text = newlistchildWithoutEmptyFields.get(i).text();
+                price = text.replaceAll("[^\\d]", "");
+                Integer sum = Integer.valueOf(price);
+                course.setPrice(sum);
+              }
+            }
+          }
+        }
+
+        if (x == null) {
           Elements children;
           List<Element> newlistchild = new ArrayList<>();
           List<Element> newlistchildWithoutEmptyFields = new ArrayList<>();
-          x = element;
-          Element parent = x.parent();
-          Element parentPrice = parent.parent();
-          Elements childsParentPrice = parentPrice.children();
-          String s;
-          Integer a = 10;
-          children = parentPrice.getAllElements();
-          for (Element child : children) {
-            Elements spisok = child.getAllElements();
-            if (child.getAllElements().size() == 1) {
-              newlistchild.add(child);
+          documentCourseElements = documentCourse.select("div#payment-link");
+          if (documentCourseElements.size() != 0) {
+            children = documentCourseElements.get(0).getAllElements();
+            for (Element child : children) {
+              Elements spisok = child.getAllElements();
+              if (child.getAllElements().size() == 1) {
+                newlistchild.add(child);
 
+              }
+            }
+
+            for (Element elementNewListChild : newlistchild) {
+              if (!elementNewListChild.text().equals("")) {
+                newlistchildWithoutEmptyFields.add(elementNewListChild);
+              }
+            }
+
+            for (int i = 0; i < newlistchildWithoutEmptyFields.size(); i++) {
+              if (newlistchildWithoutEmptyFields.get(i).text().contains("₽")) {
+                String text = newlistchildWithoutEmptyFields.get(i).text();
+                price = text.replaceAll("[^\\d]", "");
+                Integer sum = Integer.valueOf(price);
+                course.setPrice(sum);
+              }
             }
           }
 
-          for (Element elementNewListChild : newlistchild) {
-            if (!elementNewListChild.text().equals("")) {
-              newlistchildWithoutEmptyFields.add(elementNewListChild);
-            }
+          if (documentCourseElements.size() == 0) {
+            documentCourseElements = documentCourse.select("div.course-bottom-bar-meta__value nobr");
+            String text = documentCourseElements.text();
+            price = text.replaceAll("[^\\d]", "");
+            Integer sum = Integer.valueOf(price);
+            course.setPrice(sum);
           }
 
-          for (int i = 0; i < newlistchildWithoutEmptyFields.size(); i++) {
-            if (newlistchildWithoutEmptyFields.get(i).text().contains("₽")) {
-              String text = newlistchildWithoutEmptyFields.get(i).text();
-              price = text.replaceAll("[^\\d]", "");
-              Integer sum = Integer.valueOf(price);
-              course.setPrice(sum);
-            }
-          }
-        }
-      }
-
-      if (x == null) {
-        Elements children;
-        List<Element> newlistchild = new ArrayList<>();
-        List<Element> newlistchildWithoutEmptyFields = new ArrayList<>();
-        documentCourseElements = documentCourse.select("div#payment-link");
-        if (documentCourseElements.size() != 0) {
-          children = documentCourseElements.get(0).getAllElements();
-          for (Element child : children) {
-            Elements spisok = child.getAllElements();
-            if (child.getAllElements().size() == 1) {
-              newlistchild.add(child);
-
-            }
-          }
-
-          for (Element elementNewListChild : newlistchild) {
-            if (!elementNewListChild.text().equals("")) {
-              newlistchildWithoutEmptyFields.add(elementNewListChild);
-            }
-          }
-
-          for (int i = 0; i < newlistchildWithoutEmptyFields.size(); i++) {
-            if (newlistchildWithoutEmptyFields.get(i).text().contains("₽")) {
-              String text = newlistchildWithoutEmptyFields.get(i).text();
-              price = text.replaceAll("[^\\d]", "");
-              Integer sum = Integer.valueOf(price);
-              course.setPrice(sum);
-            }
-          }
-        }
-
-        if (documentCourseElements.size() == 0) {
-          documentCourseElements = documentCourse.select("div.course-bottom-bar-meta__value nobr");
-          String text = documentCourseElements.text();
-          price = text.replaceAll("[^\\d]", "");
-          Integer sum = Integer.valueOf(price);
-          course.setPrice(sum);
         }
 
       }
-
-    }
       if (href.equals("/promo/php-specialization/")) {
         if (value.equals("максимальной")) {
           course.setPrice(0);

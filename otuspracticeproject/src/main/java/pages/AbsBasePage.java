@@ -17,9 +17,9 @@ public abstract class AbsBasePage<T> extends AbsPageObject<T> {
 
   private String baseUrl = System.getProperty("webdriver.base.url", "https://otus.ru");
 
-//  public AbsBasePage(WebDriver driver){
-//    this.driver = driver;
-//  }
+  //  public AbsBasePage(WebDriver driver){
+  //    this.driver = driver;
+  //  }
 
 
   public AbsBasePage(GuiceScoped guiceScoped) {

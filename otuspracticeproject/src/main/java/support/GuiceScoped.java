@@ -7,6 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 @ScenarioScoped
 public class GuiceScoped {
-	public WebDriver driver = new WebDriverFactory().getDriver();
+  public WebDriver driver = new WebDriverFactory().getDriver();
 
 }

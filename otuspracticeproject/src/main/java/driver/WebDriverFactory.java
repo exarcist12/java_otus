@@ -10,52 +10,47 @@ import org.openqa.selenium.opera.OperaDriver;
 
 import java.util.Locale;
 
-import static data.BrowserData.CHROME;
-import static data.BrowserData.OPERA;
 
 public class WebDriverFactory implements IDriverFactory {
 
-	private String browserName = "";
+  private String browserName = "";
 
-	@Inject
-	public WebDriverFactory() {
-		browserName = System.getProperty("browser", "chrome").toLowerCase(Locale.ROOT);
-	}
+  @Inject
+  public WebDriverFactory() {
+    browserName = System.getProperty("browser", "chrome").toLowerCase(Locale.ROOT);
+  }
 
-	public WebDriver getDriver() {
-		boolean isSupported = false;
+  public WebDriver getDriver() {
+    boolean isSupported = false;
 
-		for(BrowserData browserData: BrowserData.values()) {
-			if(browserName.equals(browserData.name().toLowerCase(Locale.ROOT))) {
-				isSupported = true;
-			}
-		}
+    for(BrowserData browserData: BrowserData.values()) {
+      if(browserName.equals(browserData.name().toLowerCase(Locale.ROOT))) {
+        isSupported = true;
+      }
+    }
 
-		if(!isSupported) {
-			try {
-				throw new DriverTypeNotSupported(browserName);
-			} catch(DriverTypeNotSupported ignored) {
+    if(!isSupported) {
+      try {
+        throw new DriverTypeNotSupported(browserName);
+      } catch(DriverTypeNotSupported ignored) {
+        System.out.println("Ошибка");
+      }
+    }
 
-			}
-		}
-
-		switch(BrowserData.valueOf(browserName.toUpperCase(Locale.ROOT))) {
-			case CHROME:
-				WebDriverManager.chromedriver().setup();
-				return new ChromeDriver();
-			case OPERA:
-				WebDriverManager.operadriver().setup();
-				return new OperaDriver();
-			default:
-				try {
-					throw new DriverTypeNotSupported(browserName);
-				} catch (DriverTypeNotSupported ignored) {
-
-				}
-		}
-
-		return null;
-	}
-
-
+    switch(BrowserData.valueOf(browserName.toUpperCase(Locale.ROOT))) {
+      case CHROME:
+        WebDriverManager.chromedriver().setup();
+        return new ChromeDriver();
+      case OPERA:
+        WebDriverManager.operadriver().setup();
+        return new OperaDriver();
+      default:
+        try {
+          throw new DriverTypeNotSupported(browserName);
+        } catch (DriverTypeNotSupported ignored) {
+          System.out.println("Ошибка");
+        }
+    }
+    return null;
+  }
 }

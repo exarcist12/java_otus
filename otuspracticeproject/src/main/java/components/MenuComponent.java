@@ -57,7 +57,7 @@ public class MenuComponent extends AbsComponent<MenuComponent> {
     String selector = String.format(catalogCategoriesCheckboxesSelectorTemplate, categoryData.getName());
     WebElement element = driver.findElement(By.xpath(selector));
     List<WebElement> elements = driver.findElements(By.xpath(selector));
-//    assertThat("error", standartWaiter.waitForElementVisible(element), equalTo(true));
+    //    assertThat("error", standartWaiter.waitForElementVisible(element), equalTo(true));
 
     return this;
   }

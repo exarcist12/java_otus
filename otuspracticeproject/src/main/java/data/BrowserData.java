@@ -1,16 +1,16 @@
 package data;
 
 public enum BrowserData {
-	CHROME("chrome"),
-	OPERA("opera");
+  CHROME("chrome"),
+  OPERA("opera");
 
-	private String name;
+  private String name;
 
-	BrowserData(String name) {
-		this.name = name;
-	}
+  BrowserData(String name) {
+    this.name = name;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 }

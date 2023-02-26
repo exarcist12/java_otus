@@ -10,17 +10,17 @@ import java.util.List;
 
 public class TeacherBlock extends AbsComponent<TeacherBlock> {
 
-	@Inject
-	public TeacherBlock(GuiceScoped guiceScoped) {
-		super(guiceScoped);
-	}
+  @Inject
+  public TeacherBlock(GuiceScoped guiceScoped) {
+    super(guiceScoped);
+  }
 
-	@FindBy(css = "a.teacher")
-	private List<WebElement> teachers;
+  @FindBy(css = "a.teacher")
+  private List<WebElement> teachers;
 
-	public TeacherPage clickTeacherTileByIndex(int index) {
-		teachers.get(--index).click();
+  public TeacherPage clickTeacherTileByIndex(int index) {
+    teachers.get(--index).click();
 
-		return new TeacherPage(guiceScoped);
-	}
+    return new TeacherPage(guiceScoped);
+  }
 }
