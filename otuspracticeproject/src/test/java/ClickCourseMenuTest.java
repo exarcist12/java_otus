@@ -20,7 +20,7 @@ public class ClickCourseMenuTest {
   @Test
   public void clickCourseMenuTest() throws PathEmptyException {
 
-    String courseName = "Специализация сетевой инженер";
+    String courseName = "Apache Kafka";
     MainPage mainPage = new MainPage(driver);
     mainPage.open();
     driver.manage().window().fullscreen();

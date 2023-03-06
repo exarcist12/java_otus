@@ -28,6 +28,6 @@ public class MinValueTest {
     List<Course> coursesWithDate = menuComponent.coursesWithDate();
     CoursesData coursesData = menuComponent.function(coursesWithDate, BinaryOperator.minBy((p1, p2) -> p1.compareTo(p2))).getCoursesData();
     CoursePage coursePage = menuComponent.clickCourse(coursesData);
-    menuComponent.checkTitlePage(coursePage, CoursesData.LINUXADMINISTRATOR);
+    menuComponent.checkTitlePage(coursePage, CoursesData.MACHINELEARNING);
   }
 }
