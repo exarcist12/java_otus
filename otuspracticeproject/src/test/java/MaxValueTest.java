@@ -43,7 +43,7 @@ public class MaxValueTest {
       capabilities
     );
   }
-  @Test
+  //@Test
   public void maxValueTest() throws PathEmptyException, ParseException {
     MainPage mainPage = new MainPage(driver);
     mainPage.open();

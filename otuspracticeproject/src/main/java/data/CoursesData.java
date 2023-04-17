@@ -19,6 +19,8 @@ public enum CoursesData {
    PHPDEVELOPER("Специализация PHP Developer", "СпециализацияPHP Developer", CategoryData.PROGRAMMER),
    BI("BI-аналитика", "BI-аналитика", CategoryData.PROGRAMMER),
    R("Язык R для анализа данных", "Язык R для анализа данных", CategoryData.PROGRAMMER),
+   JAVADEV("Java Developer. Professional", "Java Developer. Professional", CategoryData.PROGRAMMER),
+   UNREALENGINE("Unreal Engine Game Developer. Professional", "Unreal Engine Game Developer. Professional", CategoryData.PROGRAMMER),
    KAFKA("Apache Kafka", "Практика по работе с Kafka для инженеров данных и разработчиков", CategoryData.PROGRAMMER),
    PHPDEVELOPER2("Специализация PHP Developer2", "Специализация PHP Developer2", CategoryData.PROGRAMMER),
    PHPDEVELOPER3("Специализация PHP Develope3","Специализация PHP Developer3", CategoryData.PROGRAMMER),

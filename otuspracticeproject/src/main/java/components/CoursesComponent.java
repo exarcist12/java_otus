@@ -40,7 +40,7 @@ public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
         listString.remove(j);
       }
 
-      if (Integer.valueOf(listString.get(2)) < 2022) {
+      if ((!(listString.get(2).equals("старта")))&&(Integer.valueOf(listString.get(2)) < 2022)) {
         listString.remove(2);
         listString.add("2023");
       }
@@ -52,10 +52,17 @@ public class CoursesComponent extends AbsBaseComponent<CoursesComponent> {
       if (listString.get(1).equals("сентябре")){
         listString.set(1, "сентября");
       }
+
+      if (listString.get(2).equals("старта")){
+        listString.set(0, "1");
+        listString.set(1, "декабря");
+      }
     }
 
     if ((listString.size()<3)) {
       listString.add("2023");
+    } else if (listString.get(2).equals("старта")){
+      listString.set(2, "2023");
     }
 
     String date = String.join(" ", listString);

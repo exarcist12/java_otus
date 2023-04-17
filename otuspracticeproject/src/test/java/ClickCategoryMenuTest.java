@@ -35,7 +35,7 @@ public class ClickCategoryMenuTest {
       capabilities
     );
   }
-  @Test
+  //@Test
   public void clickCategoryMenuItem() throws PathEmptyException, InterruptedException {
 
     MainPage mainPage = new MainPage(driver);

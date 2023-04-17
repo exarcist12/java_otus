@@ -43,7 +43,6 @@ public class ClickCourseMenuTest {
     String courseName = "Apache Kafka";
     MainPage mainPage = new MainPage(driver);
     mainPage.open();
-    driver.manage().window().fullscreen();
     MenuComponent menuComponent = new MenuComponent(driver);
     CoursesData coursesData = menuComponent.filterCourseName(courseName);
     CoursePage coursePage = menuComponent.clickCourse(coursesData);

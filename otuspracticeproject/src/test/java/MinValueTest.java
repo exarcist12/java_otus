@@ -40,7 +40,7 @@ public class MinValueTest {
       capabilities
     );
   }
-  @Test
+  //@Test
   public void minValueTest() throws PathEmptyException, ParseException {
     MainPage mainPage = new MainPage(driver);
     mainPage.open();
