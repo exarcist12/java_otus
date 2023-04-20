@@ -4,6 +4,7 @@ import data.CoursesData;
 import exceptions.PathEmptyException;
 import extensions.UIExtension;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -38,6 +39,7 @@ public class ClickCourseMenuTest {
     );
   }
   @Test
+  @DisplayName("Проверка клика по необходимому курсу 'Apache Kafka'")
   public void clickCourseMenuTest() throws PathEmptyException {
 
     String courseName = "Apache Kafka";
